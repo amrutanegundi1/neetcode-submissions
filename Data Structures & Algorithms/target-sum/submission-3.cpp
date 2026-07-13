@@ -1,0 +1,23 @@
+class Solution {
+   public:
+    map<pair<int, int>, int> mp;
+    int findTargetSumWays(vector<int>& nums, int target) { return dfs(0, target, nums); }
+    int dfs(int i,int target, vector<int>& nums) {
+        pair<int, int> pr = pair<int, int>(i, target);
+        if(mp.find(pr) != mp.end())
+        {
+            return mp[pr];
+        }
+        if(i >= nums.size() && 0 == target)
+        {
+            return 1;
+        }
+        if(i >= nums.size())
+        {
+            return 0;
+        }
+
+        mp[pr] = (dfs(i+1, nums[i] + target, nums) + dfs(i+1, nums[i] - target, nums));
+        return mp[pr];
+    }
+};
