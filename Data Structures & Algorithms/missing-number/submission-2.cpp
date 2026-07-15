@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+
+        // int result = 0;
+        // for(int i = 1; i <= nums.size(); i++)
+        //     result ^= i ^ nums[i-1];
+
+        int result = 0;
+        for(auto itr : nums)
+        result ^= itr;
+        for(int i = 1; i <= nums.size(); i++)
+        result ^= i;
+        return result;
+        
+    }
+};
